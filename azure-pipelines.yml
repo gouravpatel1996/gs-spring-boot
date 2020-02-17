@@ -17,9 +17,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-    
-    steps:
-
     - task: Maven@3
       inputs:
         mavenPomFile: 'pom.xml'
