@@ -12,7 +12,7 @@ variables:
   #azureSubscription: '9c5190a7-8f3b-46da-9681-2ffa99ab9570'
   
   # Web app name
-  webAppName: 'java-spring-boot'
+  #webAppName: 'java-spring-boot'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -62,13 +62,12 @@ stages:
             displayName: 'Download Pipeline Artifact'
             inputs:
               buildType: 'current'
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Visual Studio Enterprise (9c5190a7-8f3b-46da-9681-2ffa99ab9570)'
-    appType: 'webAppLinux'
-    WebAppName: 'springboot-app'
-    deployToSlotOrASE: true
-    ResourceGroupName: 'java-app'
-    SlotName: 'production'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+          - task: AzureWebApp@1
+            displayName: 'Azure Web App Deploy: gs-spring-boot'
+            inputs:
+              connectionType: 'AzureRM'
+              azureSubscription: 'Visual Studio Enterprise(9c5190a7-8f3b-46da-9681-2ffa99ab9570)'
+              appType: 'webAppLinux'
+              appName: 'springboot-app'
+              package: '$(System.ArtifactsDirectory)/drop/**/target/*.?(war|jar)'
