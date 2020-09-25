@@ -22,6 +22,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+            <packaging>war</packaging>
+
         </dependency>
         <!-- end::actuator[] -->
         <!-- tag::tests[] -->
